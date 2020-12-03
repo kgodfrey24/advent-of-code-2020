@@ -1,21 +1,32 @@
+from collections import Counter
+
 f = open("day2\input.txt")
 lines = f.readlines()
-#print(lines)
 
-sample = "4-5 r: rrrjr"
+i = 0
 
-split_sample = sample.split()
+for line in lines:
 
-print(split_sample)
+    split_line = line.split()
 
-print(split_sample[0])
+    split_range = split_line[0].split("-")
 
-split_range = split_sample[0].split("-")
+    smallest = int(split_range[0])
+    largest = int(split_range[1])
 
-print(split_range)
+    check_value = split_line[1][0]
 
-smallest = int(split_range[0])
-largest = int(split_range[1])
-print(f"smallest = {smallest} and largest = {largest}")
+    count_totals = Counter(split_line[2])
 
-print(split_sample[1][0])
+    value_total = count_totals.get(check_value,0)
+
+
+
+    print(f"{smallest} {largest} {check_value} {count_totals}")
+
+    if value_total >= smallest and value_total <= largest:
+        i += 1
+
+print(i)
+
+    
